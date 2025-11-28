@@ -7,57 +7,13 @@ import PPM.Parser
 
 A unified, elegant syntax for defining PPM images in Lean 4.
 
-## Grid Syntax (`#ppm`)
+## Features
 
-**Auto-inferred dimensions** (most elegant):
-```lean
-#ppm {
-  | red   green |
-  | blue  white |
-}
-```
-
-**Explicit dimensions** (validates pixel count):
-```lean
-#ppm {
-  2×2:
-  | red   green |
-  | blue  white |
-}
-```
-
-## P3 String Parsing
-
-Use `PPM.fromString!` for P3 format:
-```lean
-PPM.fromString! "P3\n2 2\n255\n255 0 0  0 255 0\n0 0 255  255 255 255"
-```
-
-## Canvas DSL (Procedural Drawing)
-```lean
-canvas 100×100 {
-  fill black
-  rect 10 10 50 50 red
-  circle 50 50 20 yellow
-}
-```
-
-## Colors
-- Named: red, green, blue, white, black, yellow, cyan, magenta, gray, orange, purple, pink, etc.
-- RGB: `rgb(255, 128, 0)`
-- Hex: `0xFF8000`
-- Grayscale: `128` (values 0-255)
-
-## Image Operators
-- `⊕` blend two images
-- `⊖` invert colors (prefix)
-- `↔` flip horizontal (postfix)
-- `↕` flip vertical (postfix)
-- `⊞` place side by side
-- `⊟` stack vertically
-
-## Export
-- `img.toP3` - convert to P3 string for round-trip
+- Grid syntax with auto-inferred or explicit dimensions
+- Named colors (red, green, blue, white, black, yellow, cyan, etc.)
+- RGB and hex color notation
+- Canvas DSL for procedural drawing
+- Image operators for blending, flipping, and composing
 -/
 
 namespace PPM

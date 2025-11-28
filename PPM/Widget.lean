@@ -6,25 +6,10 @@ import ProofWidgets.Component.HtmlDisplay
 /-!
 # PPM ProofWidgets Integration
 
-Renders `Img` values as HTML grids in the VS Code infoview using ProofWidgets.
+Renders {name}`Img` values as HTML grids in the VS Code infoview using ProofWidgets.
 
-## Usage
-
-```lean
-def img := #ppm { | red green | | blue white | }
-
--- Display in infoview
-#html PPM.display img
-
--- Display scaled (4x pixels)
-#html PPM.displayScaled img 4
-```
-
-## Functions
-
-- `Img.toHtmlGrid`: Convert image to HTML grid
-- `PPM.display`: Display image at default scale
-- `PPM.displayScaled`: Display image with custom pixel size
+This module provides functions to convert images to HTML for display in the VS Code
+infoview, with configurable pixel sizes for scaling.
 -/
 
 open Lean
@@ -79,10 +64,10 @@ def imgWidget (img : Img) : ProofWidgets.Html := toHtmlGrid img 8
 
 end Img
 
-/-- Display a PPM image in the infoview. Usage: `#html PPM.display myImage` -/
+/-- Display a PPM image in the infoview. -/
 def display (img : Img) : ProofWidgets.Html := Img.toHtmlGrid img 8
 
-/-- Display a PPM image with custom pixel size. Usage: `#html PPM.displayScaled myImage 12` -/
+/-- Display a PPM image with custom pixel size. -/
 def displayScaled (img : Img) (pixelSize : Nat := 8) : ProofWidgets.Html := Img.toHtmlGrid img pixelSize
 
 end PPM

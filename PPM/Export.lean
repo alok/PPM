@@ -4,24 +4,12 @@ import PPM.Types
 /-!
 # PPM Export
 
-Export `Img` values to PPM P3 format files.
+Export {name}`Img` values to PPM P3 format files.
 
-## Usage
-
-```lean
-def img := Img.solid 100 100 (RGB16.ofNats 255 0 0)
-
--- Export to P3 file
-#eval img.exportP3 "output.ppm"
-
--- Get P3 string
-#eval img.toP3
-```
-
-## Aliases
-
-- `Img.toP3` = `Img.toP3String`
-- `Img.exportPNG` exports via ImageMagick's `convert` tool
+This module provides functions to:
+- Render an image as an ASCII P3 PPM string
+- Write an image directly to a P3 file
+- Export to PNG format using ImageMagick or macOS sips
 -/
 
 open System
@@ -48,14 +36,14 @@ def toP3String (img : Img) : String := Id.run do
     s := s ++ "\n"
   s
 
-/-- Write the image to an ASCII P3 PPM file at `path`. -/
+/-- Write the image to an ASCII P3 PPM file at the given path. -/
 def exportP3 (img : Img) (path : FilePath) : IO Unit := do
   IO.FS.writeFile path (toP3String img)
 
 /--
-Write the image to a temporary `.ppm` next to `destPNG` and attempt to convert
-it to PNG using a system tool if available. Tries `magick` then `sips`.
-Falls back to leaving the `.ppm` if conversion fails.
+Write the image to a temporary PPM file next to the destination PNG and attempt
+to convert it using ImageMagick or macOS sips. Falls back to leaving the PPM
+file if conversion fails.
 -/
 def exportPNG (img : Img) (destPNG : FilePath) : IO Unit := do
   let dir := destPNG.parent.getD "."

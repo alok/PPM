@@ -3,30 +3,17 @@ import PPM.Types
 /-!
 # PPM P3 Parser
 
-Parses ASCII PPM (P3) format strings into `Img` values.
+Parses ASCII PPM (P3) format strings into {name}`Img` values.
 
 ## P3 Format
 
-```
-P3
-# optional comment
-width height
-maxval
-r g b  r g b  ...
-```
+P3 files have a simple ASCII format:
+- Magic number "P3" (optional in this parser)
+- Width and height as integers
+- Maximum color value (defaults to 255)
+- RGB triplets as space-separated integers
 
-## Usage
-
-```lean
-def img := PPM.fromString! "P3\n2 2\n255\n255 0 0  0 255 0\n0 0 255  255 255 255"
-#eval img.width  -- 2
-```
-
-The parser handles:
-- Optional "P3" magic number
-- Comments starting with `#`
-- Flexible whitespace
-- Default maxVal of 255 if omitted
+The parser handles comments starting with {lit}`#` and flexible whitespace.
 -/
 
 /-- Helper to convert Option to Except with error message -/

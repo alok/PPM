@@ -12,7 +12,8 @@ package PPM where
   leanOptions := #[
     ⟨`pp.unicode.fun, true⟩,
     ⟨`autoImplicit, true⟩,
-    ⟨`relaxedAutoImplicit, false⟩
+    ⟨`relaxedAutoImplicit, false⟩,
+    ⟨`doc.verso, true⟩
   ]
 
 @[default_target]
