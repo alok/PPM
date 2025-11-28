@@ -1,3 +1,13 @@
+/-!
+# PPM Core Types
+
+This module defines the core types for PPM image representation:
+
+- `RGB16`: A pixel with 16-bit RGB components (0-65535)
+- `Img`: Dynamic image with runtime dimensions
+- `Image w h`: Type-parameterized image with compile-time dimension checking
+-/
+
 /-- RGB pixel with 16-bit components to support full PPM range (0 to 65535) -/
 structure RGB16 where
   /-- Red component (0-65535) -/

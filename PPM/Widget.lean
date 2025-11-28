@@ -3,11 +3,28 @@ import Lean.Data.Json
 import PPM.Types
 import ProofWidgets.Component.HtmlDisplay
 
-/-
-HTML renderer and delaborator for `PPM.Img` using Lean's core Widget.Html and ProofWidgets.
+/-!
+# PPM ProofWidgets Integration
 
-Images are automatically displayed in the infoview when you hover over or evaluate them.
-You can also manually display with: `#html (PPM.Img.toHtmlGrid img 8)`
+Renders `Img` values as HTML grids in the VS Code infoview using ProofWidgets.
+
+## Usage
+
+```lean
+def img := #ppm { | red green | | blue white | }
+
+-- Display in infoview
+#html PPM.display img
+
+-- Display scaled (4x pixels)
+#html PPM.displayScaled img 4
+```
+
+## Functions
+
+- `Img.toHtmlGrid`: Convert image to HTML grid
+- `PPM.display`: Display image at default scale
+- `PPM.displayScaled`: Display image with custom pixel size
 -/
 
 open Lean

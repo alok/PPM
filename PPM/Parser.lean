@@ -1,5 +1,34 @@
 import PPM.Types
 
+/-!
+# PPM P3 Parser
+
+Parses ASCII PPM (P3) format strings into `Img` values.
+
+## P3 Format
+
+```
+P3
+# optional comment
+width height
+maxval
+r g b  r g b  ...
+```
+
+## Usage
+
+```lean
+def img := PPM.fromString! "P3\n2 2\n255\n255 0 0  0 255 0\n0 0 255  255 255 255"
+#eval img.width  -- 2
+```
+
+The parser handles:
+- Optional "P3" magic number
+- Comments starting with `#`
+- Flexible whitespace
+- Default maxVal of 255 if omitted
+-/
+
 /-- Helper to convert Option to Except with error message -/
 private def optToExcept (o : Option α) (err : String) : Except String α :=
   match o with

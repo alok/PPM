@@ -1,6 +1,29 @@
 import Std
 import PPM.Types
 
+/-!
+# PPM Export
+
+Export `Img` values to PPM P3 format files.
+
+## Usage
+
+```lean
+def img := Img.solid 100 100 (RGB16.ofNats 255 0 0)
+
+-- Export to P3 file
+#eval img.exportP3 "output.ppm"
+
+-- Get P3 string
+#eval img.toP3
+```
+
+## Aliases
+
+- `Img.toP3` = `Img.toP3String`
+- `Img.exportPNG` exports via ImageMagick's `convert` tool
+-/
+
 open System
 
 namespace PPM

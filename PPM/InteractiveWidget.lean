@@ -5,7 +5,22 @@ import PPM.CustomSyntax
 import PPM.Widget
 
 /-!
-Interactive PPM Canvas Widget - display canvas with size controls.
+# Interactive PPM Canvas Widget
+
+Provides an interactive canvas widget with size controls in the infoview.
+
+## Usage
+
+```lean
+open PPM.Interactive in
+def adjustableScene := interactiveCanvas size!(60, 40) fun s =>
+  s.fillColor (namedColor "cyan")
+  |>.drawRect 0 25 60 15 (namedColor "green")
+
+#html PPM.Interactive.displayInteractive adjustableScene
+```
+
+The widget shows buttons to adjust width/height and tells you what to update in source.
 -/
 
 open Lean ProofWidgets Widget
